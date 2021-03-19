@@ -1,10 +1,8 @@
 class Main {
   function void main() {
-    // code
+    do Output.moveCursor(0,0);
+    do Output.printString("hello world!");
     return;
   }
 
-  function void MethName21 (/** arguments */) {
-    return;
-  }
 }
