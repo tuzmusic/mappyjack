@@ -1,0 +1,6 @@
+function Main.main 0
+push constant 0
+return
+function Main.MethName1 0
+push constant 0
+return

@@ -1,0 +1,10 @@
+class Main {
+  function void main() {
+    // code
+    return;
+  }
+
+  function void MethName1 (/** arguments */) {
+    return;
+  }
+}
