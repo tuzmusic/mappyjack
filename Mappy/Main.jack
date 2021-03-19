@@ -4,7 +4,7 @@ class Main {
     return;
   }
 
-  function void MethName1 (/** arguments */) {
+  function void MethName21 (/** arguments */) {
     return;
   }
 }
