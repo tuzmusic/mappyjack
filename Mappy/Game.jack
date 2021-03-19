@@ -1,0 +1,27 @@
+class Game {
+  field boolean done;
+
+  constructor Game new () {
+    return this;
+  }
+  
+  method void run () {
+
+    var int counter;
+    var string counterStr;
+    let done = false;
+    let counter = 0;
+
+    while (~done) {
+      do Output.moveCursor(0,0);
+        
+      do Output.printInt(counter);
+
+      let counter = counter + 1;
+      if (counter > 100) { let done = true; }
+      do Sys.wait(100);
+    }
+    
+    return;
+  }
+}

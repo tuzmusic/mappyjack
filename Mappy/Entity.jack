@@ -1,0 +1,30 @@
+class Entity {
+  field Vec2 velocity;
+  field Vec2 position;
+  field int height;
+  field int width;
+  field string name;
+  
+  method string get_name() { return name; }
+
+  method Vec2 get_velocity() { return velocity; }
+  method void set_velocity(Vec2 val) { let velocity = val; return; }
+   
+  method Vec2 get_position() { return position; }
+  method void set_position(Vec2 val) { let position = val; return; }
+  
+  method void move () {
+    do position.set_x(position.x() + velocity.x());
+    do position.set_y(position.y() + velocity.y());
+    return;
+  }
+  
+  constructor Entity new (string _name, int startX, int startY, int _height, int _width) {
+    let velocity = Vec2.new(0, 0);
+    let position = Vec2.new(startX, startY);
+    let height = _height;
+    let width = _width;
+    
+    return this;
+  }
+}

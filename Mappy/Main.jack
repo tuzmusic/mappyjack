@@ -1,7 +1,8 @@
 class Main {
   function void main() {
-    do Output.moveCursor(0,0);
-    do Output.printString("hello world!");
+    var Game game;
+    let game = Game.new();
+    do game.run();
     return;
   }
 

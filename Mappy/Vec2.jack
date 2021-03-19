@@ -1,0 +1,16 @@
+class Vec2 {
+  field int _x;
+  field int _y;
+  
+  method int x() { return _x; }
+  method void set_x(int val) { let _x = val; return; }
+
+  method int y() { return _y; }
+  method void set_y(int val) { let _y = val; return; }
+
+  constructor Vec2 new (int __x, int __y) {
+    let _x = __x;
+    let _y = __y;
+    return this;
+  }
+}
