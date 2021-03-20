@@ -9,22 +9,30 @@ class Game {
     var int counter;
     var int entitiesLen;
     var Array entities;
-    var Entity entity;
+    var Entity entity; // keep track of current entity in the loop
     var char currentKey;
-
+    var Entity mappy;
+    
     let done = false;
     let counter = 0;
 
     let entitiesLen = 1; // update manually as entities are added. blah.
     let entities = Array.new(entitiesLen); 
+
+    let mappy = createMappy();
+    let entities[0] = mappy;
     
-    // populate array in place
-    do populateEntities(entities, entitiesLen);
-    
+    // RUN LOOP
     while (~done) {
       let counter = 0;
-
+      
+      // READ INPUT
       let currentKey = Keyboard.keyPressed();
+      if (currentKey = 130) { do mappy.set_horiz_velocity(-2); } // LEFT
+      if (currentKey = 132) { do mappy.set_horiz_velocity(2); } // RIGHT
+      if (currentKey = 0) { do mappy.set_horiz_velocity(0); } // RIGHT
+
+
 
       // DRAW ENTITIES
       while (counter < entitiesLen) {
@@ -34,14 +42,8 @@ class Game {
       }    
       do Sys.wait(30);
     }
-    
-    return;
-  }
 
-  method void populateEntities (Array arr, int len) {
-    // since there's no such thing as an array literal,
-    // this is how we have to populate the array. completely manually.
-    let arr[0] = createMappy();
+    // todo: DISPOSE!
     
     return;
   }

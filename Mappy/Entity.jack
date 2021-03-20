@@ -13,7 +13,7 @@ class Entity {
   method string get_name() { return name; }
 
   method Vec2 get_velocity() { return velocity; }
-  method void set_velocity(Vec2 val) { let velocity = val; return; }
+  method void set_horiz_velocity(int val) { do velocity.set_x(val); return; }
    
   method Vec2 get_position() { return position; }
   method void set_position(Vec2 val) { let position = val; return; }
@@ -21,7 +21,7 @@ class Entity {
   
   method void update () {
     // no need to redraw if we're in the same place
-    if (firstDraw & ~velocity.x() & ~velocity.y()) { return; }
+    if (firstDraw & (velocity.x() = 0) & (velocity.y() = 0)) { return; }
     let firstDraw = true;
 
     // todo: this probably isn't the right place to call draw()
