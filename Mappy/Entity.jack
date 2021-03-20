@@ -1,11 +1,15 @@
 class Entity {
+  //region FIELDS
   field Vec2 velocity;
   field Vec2 baseVelocity;
   field Vec2 position;
   field int height;
   field int width;
   field string name;
+  field boolean firstDraw; 
+  // endregion FIELDS
   
+  //region ACCESSORS
   method string get_name() { return name; }
 
   method Vec2 get_velocity() { return velocity; }
@@ -13,27 +17,30 @@ class Entity {
    
   method Vec2 get_position() { return position; }
   method void set_position(Vec2 val) { let position = val; return; }
+  //endregion ACCESSORS
   
   method void update () {
+    // no need to redraw if we're in the same place
+    if (firstDraw & ~velocity.x() & ~velocity.y()) { return; }
+    let firstDraw = true;
+
     // todo: this probably isn't the right place to call draw()
     // and of course any kind of boundary detection, blah blah blah
     // although I guess if that's handled by setting the velocity...
-    do draw(false);
+    
+    // erase
+    do draw(false); 
+    // update position
     do position.set_x(position.x() + velocity.x());
     do position.set_y(position.y() + velocity.y());
+    // redraw
     do draw(true);
     return;
   }
   
   // todo: this definitely needs to be customizable per entity!
   method void draw (boolean color) {
-    do Screen.setColor(color);
-    do Screen.drawRectangle(
-      position.x(), 
-      position.y(),
-      position.x() + width, 
-      position.y() + height
-    );
+    do drawRectEntity(color);
     return;
   }
   
@@ -44,7 +51,35 @@ class Entity {
     let position = Vec2.new(startX, startY);
     let height = _height;
     let width = _width;
-    
+    let firstDraw = false;
+
     return this;
+  }
+
+  method void drawRectEntity(boolean color) {
+    // pass false to erase previous drawing
+    do Screen.setColor(color);
+
+    // draw outer rectangle
+    do Screen.drawRectangle(
+      position.x(), 
+      position.y(),
+      position.x() + width, 
+      position.y() + height
+    );
+
+    // if we're erasing we don't need to worry about the inner shapes
+    if (~color) { return; } 
+
+    // draw inner (white) rectangle
+    do Screen.setColor(false);
+    do Screen.drawRectangle(
+      position.x() + 5, 
+      position.y() + 5, 
+      position.x() + width - 5, 
+      position.y() + height - 5
+    );
+
+    return;
   }
 }

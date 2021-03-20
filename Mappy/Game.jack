@@ -52,7 +52,7 @@ class Game {
       "mappy", // name
       20, // x
       20, // y
-      5, // baseVel
+      0, // baseVel
       32, // height
       32  // width
     );
