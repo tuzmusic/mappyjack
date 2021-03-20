@@ -6,22 +6,57 @@ class Game {
   }
   
   method void run () {
-
     var int counter;
-    var string counterStr;
+    var int entitiesLen;
+    var Array entities;
+    var Entity entity;
+    var char currentKey;
+
     let done = false;
     let counter = 0;
 
+    let entitiesLen = 1; // update manually as entities are added. blah.
+    let entities = Array.new(entitiesLen); 
+    
+    // populate array in place
+    do populateEntities(entities, entitiesLen);
+    
     while (~done) {
-      do Output.moveCursor(0,0);
-        
-      do Output.printInt(counter);
+      let counter = 0;
 
-      let counter = counter + 1;
-      if (counter > 100) { let done = true; }
-      do Sys.wait(100);
+      let currentKey = Keyboard.keyPressed();
+
+      // DRAW ENTITIES
+      while (counter < entitiesLen) {
+        let entity = entities[counter];
+        do entity.update();
+        let counter = counter + 1;
+      }    
+      do Sys.wait(30);
     }
     
     return;
+  }
+
+  method void populateEntities (Array arr, int len) {
+    // since there's no such thing as an array literal,
+    // this is how we have to populate the array. completely manually.
+    let arr[0] = createMappy();
+    
+    return;
+  }
+
+  method Entity createMappy () {
+    var Entity mappy;
+    let mappy = Entity.new(
+      "mappy", // name
+      20, // x
+      20, // y
+      5, // baseVel
+      32, // height
+      32  // width
+    );
+
+    return mappy;
   }
 }

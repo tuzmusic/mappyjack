@@ -1,5 +1,5 @@
 load,
 
-repeat 3000 {
+repeat 99999999999 {
   vmstep;
 }

@@ -13,7 +13,6 @@ function compile() {
     const res = childProcess
       .execSync(["sh", compilerPath, filePath].join(" "))
       .toString();
-    console.clear();
     console.log(res);
   } catch (error) {
     const compilerError = error.message.split("\n").slice(1).join("\n");
@@ -24,6 +23,7 @@ function compile() {
 const watcher = chokidar.watch(filePath + "**/*.jack");
 
 watcher.on("all", (type, filename, ...args) => {
+  console.clear();
   console.log(path.basename(filename), type);
   compile();
 });
