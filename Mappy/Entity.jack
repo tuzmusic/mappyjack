@@ -27,42 +27,6 @@ class Entity {
   method void add_to_y_pos(int val) { do position.set_y(position.y() + val); return; }
   //endregion ACCESSORS
   
-  method void update (Game level) {
-    var int counter;
-    var Array entities;
-    var Entity entity; // keep track of current entity in the loop
-
-    let entities = level.get_entities();
-    
-    // no need to redraw if we're in the same place, as long as we've been drawn ever
-    if (firstDraw & (velocity.x() = 0) & (velocity.y() = 0)) { return; }
-    // indicate that we've been drawn
-    let firstDraw = true;
-
-    // erase (at prev position)
-    do draw(false); 
-
-    // UPDATE POSITION
-    do position.set_x(position.x() + velocity.x());
-    // todo: CHECK X COLLISION
-    while (counter < level.get_entitiesLen()) {
-      let entity = entities[counter];
-      let counter = counter + 1;
-
-      // CHECK ENTITY X/SIZE vs THIS.X/SIZE
-    }    
-
-
-    do position.set_y(position.y() + velocity.y());
-    // todo: CHECK Y COLLISION
-
-    // obey gravity
-    do set_y_vel(velocity.y() + level.get_gravity());
-    
-    // redraw
-    do draw(true);
-    return;
-  }
   
   // todo: this definitely needs to be customizable per entity!
   method void draw (boolean color) {

@@ -1,0 +1,11 @@
+class U {
+
+  // a class MUST have at least one field
+  field int placeholder;
+  
+  function int GRAVITY() { return 1; } // effects all moving entities
+  function int HEIGHT() { return 256; }
+  function int WIDTH() { return 512; }
+  
+  constructor U new () { return this; }
+}

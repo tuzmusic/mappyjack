@@ -1,6 +1,8 @@
 class Main {
   function void main() {
     var Game game;
+    var U util;
+    let util = U.new(); // initializes static variables
     let game = Game.new();
     do game.run();
     return;

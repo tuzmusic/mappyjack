@@ -1,0 +1,30 @@
+class VArray {
+  field Array _arr;
+  field int _len;
+
+  /* objects can be converted to array, so "Array" is
+  used here as generic object type */
+  method Array objAt(int index) { return _arr[index]; }
+
+  method void allocate() { 
+    do _arr.dispose();
+    let _arr = Array.new(_len);
+    return;
+  }
+  method void push (Array obj) {
+    let _len = _len + 1;
+    do allocate();
+
+    // COPY EXISTING ARRAY
+
+    let _arr[_len] = obj;
+
+    return; 
+  }
+
+  constructor VArray new () {
+    let _len = 0;
+    do allocate();
+    return this;
+  }
+}
