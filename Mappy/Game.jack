@@ -1,7 +1,12 @@
 class Game {
   field boolean done;
+  field int GRAVITY; // effects all moving entities
+
+  method int get_gravity() { return GRAVITY; }
 
   constructor Game new () {
+    let GRAVITY = 1;
+    let done = false;
     return this;
   }
   
@@ -10,18 +15,14 @@ class Game {
     var int counter;
     var int entitiesLen;
     var Array entities;
-    var int GRAVITY; // effects all moving entities
     var Entity entity; // keep track of current entity in the loop
     var Entity mappy;
     //endregion declarations
     
     //region boring initialization
-    let done = false;
     let counter = 0;
     let entitiesLen = 1; // update manually as entities are added. blah.
     let entities = Array.new(entitiesLen); 
-
-    let GRAVITY = 1;
     //endregion boring initialization
 
     let mappy = createMappy();
@@ -53,7 +54,7 @@ class Game {
         let entity = entities[counter];
         let counter = counter + 1;
 
-        do entity.update(GRAVITY);
+        do entity.update(this);
       }    
       do Sys.wait(30);
     }
