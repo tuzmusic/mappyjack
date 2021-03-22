@@ -6,45 +6,71 @@ class Game {
   }
   
   method void run () {
+    //region declarations
     var int counter;
     var int entitiesLen;
     var Array entities;
+    var int GRAVITY; // effects all moving entities
     var Entity entity; // keep track of current entity in the loop
-    var char currentKey;
     var Entity mappy;
+    //endregion declarations
     
+    //region boring initialization
     let done = false;
     let counter = 0;
-
     let entitiesLen = 1; // update manually as entities are added. blah.
     let entities = Array.new(entitiesLen); 
 
+    let GRAVITY = 1;
+    //endregion boring initialization
+
     let mappy = createMappy();
     let entities[0] = mappy;
-    
+
     // RUN LOOP
     while (~done) {
       let counter = 0;
-      
-      // READ INPUT
-      let currentKey = Keyboard.keyPressed();
-      if (currentKey = 130) { do mappy.set_horiz_velocity(-2); } // LEFT
-      if (currentKey = 132) { do mappy.set_horiz_velocity(2); } // RIGHT
-      if (currentKey = 0) { do mappy.set_horiz_velocity(0); } // RIGHT
-
-
+    
+      do handleMappyInput(mappy);
 
       // DRAW ENTITIES
+      /* from mario
+      1. timer.update
+        1. draws level
+        2. level.update()
+          1. entity.update()
+            1. this.traits.forEach(trait => trait.update(this, deltaTime));
+              - traits include: velocity, go, jump
+          2. updates entity X position
+          3. checks X collisions (tile)
+          4. updates entity Y position
+          5. checks Y collisions (tile)
+        3. correcty mario's MINIMUM X position
+        (4. moves camera)
+        5. applies gravity to mario's y-vel
+      */
       while (counter < entitiesLen) {
         let entity = entities[counter];
-        do entity.update();
         let counter = counter + 1;
+
+        do entity.update(GRAVITY);
       }    
       do Sys.wait(30);
     }
 
     // todo: DISPOSE!
     
+    return;
+  }
+
+  method void handleMappyInput(Entity mappy) {
+    var char currentKey;
+      
+    let currentKey = Keyboard.keyPressed();
+    if (currentKey = 130) { do mappy.set_x_vel(-2); } // LEFT
+    if (currentKey = 132) { do mappy.set_x_vel(2); } // RIGHT
+    if (currentKey = 0) { do mappy.set_x_vel(0); } // RIGHT
+
     return;
   }
 
