@@ -4,8 +4,8 @@ class U {
   field int placeholder;
   
   function int GRAVITY() { return 1; } // effects all moving entities
-  function int HEIGHT() { return 256; }
-  function int WIDTH() { return 512; }
+  function int HEIGHT() { return 256 - 1; } // actually the index of the last pixel
+  function int WIDTH() { return 512 - 1; }  // actually the index of the last pixel
   
   constructor U new () { return this; }
 }

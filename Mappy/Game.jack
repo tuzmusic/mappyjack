@@ -4,11 +4,14 @@ class Game {
   field Array entities;
   field int entitiesLen;
   field Entity entity; // keep track of current entity in the loop
+  field Level level;
 
   constructor Game new () {
     let done = false;
     let entitiesLen = 1; // update manually as entities are added. blah.
     let entities = Array.new(entitiesLen); 
+
+    let level = Level.new();
     return this;
   }
   
@@ -26,8 +29,8 @@ class Game {
     // RUN LOOP
     while (~done) {
       do handleMappyInput(mappy);
-      do drawLevel();
-      do drawEntities();
+      do level.drawLevel();
+      // do drawEntities();
       do Sys.wait(30);
     }
 
@@ -79,14 +82,8 @@ class Game {
         entity.get_y_vel() + U.GRAVITY()
       );
 
-      do entity.draw(true);
+      do entity.draw();
     }    
-    return;
-  }
-  method void drawLevel() {
-    // ERASE SCREEN
-    do Screen.setColor(false);
-    do Screen.drawRectangle(0, 0, U.WIDTH()-1, U.HEIGHT()-1);
     return;
   }
   

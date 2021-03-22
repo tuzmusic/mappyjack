@@ -29,8 +29,8 @@ class Entity {
   
   
   // todo: this definitely needs to be customizable per entity!
-  method void draw (boolean color) {
-    do drawRectEntity(color);
+  method void draw () {
+    do drawRectEntity();
     return;
   }
   
@@ -46,9 +46,9 @@ class Entity {
     return this;
   }
 
-  method void drawRectEntity(boolean color) {
+  method void drawRectEntity() {
     // pass false to erase previous drawing
-    do Screen.setColor(color);
+    do Screen.setColor(true);
 
     // draw outer rectangle
     do Screen.drawRectangle(
@@ -58,8 +58,6 @@ class Entity {
       position.y() + height
     );
 
-    // if we're erasing we don't need to worry about the inner shapes
-    if (~color) { return; } 
 
     // draw inner (white) rectangle
     do Screen.setColor(false);

@@ -1,0 +1,30 @@
+class Level {
+  field int FLOOR_HEIGHT;
+  field int w;
+  field int h;
+
+  // fields go first
+  method void drawLevel() {
+
+    // ERASE SCREEN
+    do Screen.setColor(false);
+    do Screen.drawRectangle(0, 0, w, h);
+
+    do drawFloor();
+    return;
+  }
+  
+  method void drawFloor() {
+    do Screen.setColor(true);
+    do Screen.drawRectangle(0, h - FLOOR_HEIGHT, w, h);
+    return;
+  }
+  
+  constructor Level new () {
+    let w = U.WIDTH();
+    let h = U.HEIGHT();
+    let FLOOR_HEIGHT = 2;
+    return this;
+  }
+  
+}
