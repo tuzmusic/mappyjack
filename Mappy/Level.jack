@@ -2,21 +2,33 @@ class Level {
   field int FLOOR_HEIGHT;
   field int w;
   field int h;
+  field Array floors;
 
-  // fields go first
-  method void drawLevel() {
+  method void populateFloors () {
+    let floors = Array.new(1);
+    let floors[0] = Rectangle.new(0, h - FLOOR_HEIGHT, w, h);
+    return;
+  }
 
+  method void eraseScreen() {
     // ERASE SCREEN
     do Screen.setColor(false);
     do Screen.drawRectangle(0, 0, w, h);
-
-    do drawFloor();
     return;
   }
   
-  method void drawFloor() {
-    do Screen.setColor(true);
-    do Screen.drawRectangle(0, h - FLOOR_HEIGHT, w, h);
+  // fields go first
+  method void drawLevel() {
+    do eraseScreen();
+    do drawFloors();
+    return;
+  }
+  
+  method void drawFloors() {
+    // todo: iterate floors
+    var Rectangle floor;
+    let floor = floors[0];
+    do floor.draw();
     return;
   }
   
@@ -24,6 +36,7 @@ class Level {
     let w = U.WIDTH();
     let h = U.HEIGHT();
     let FLOOR_HEIGHT = 2;
+    do populateFloors();
     return this;
   }
   
