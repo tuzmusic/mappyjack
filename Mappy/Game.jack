@@ -1,8 +1,12 @@
 class Game {
   field boolean done;
   field int GRAVITY; // effects all moving entities
+  field Array entities;
+  field int entitiesLen;
 
   method int get_gravity() { return GRAVITY; }
+  method int get_entities() { return entities; }
+  method int get_entitiesLen() { return entitiesLen; }
 
   constructor Game new () {
     let GRAVITY = 1;
@@ -13,8 +17,6 @@ class Game {
   method void run () {
     //region declarations
     var int counter;
-    var int entitiesLen;
-    var Array entities;
     var Entity entity; // keep track of current entity in the loop
     var Entity mappy;
     //endregion declarations
