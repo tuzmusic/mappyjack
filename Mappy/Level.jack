@@ -1,12 +1,16 @@
 class Level {
-  field int FLOOR_HEIGHT;
+  static int FLOOR_HEIGHT;
   field int w;
   field int h;
   field Array floors;
 
+  function Rectangle createFloor (int xStart, int yStart, int width) {
+    return Rectangle.create(xStart, yStart, width, FLOOR_HEIGHT);
+  }
+
   method void populateFloors () {
     let floors = Array.new(1);
-    let floors[0] = Rectangle.new(0, h - FLOOR_HEIGHT, w, h);
+    let floors[0] = Level.createFloor(0, h - FLOOR_HEIGHT, w);
     return;
   }
 
@@ -41,3 +45,4 @@ class Level {
   }
   
 }
+

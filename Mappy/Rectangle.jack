@@ -17,6 +17,15 @@ class Rectangle {
     return;
   }
 
+  function Rectangle create(int xStart, int yStart, int width, int height) {
+    return Rectangle.new(
+      xStart,
+      yStart,
+      xStart + width,
+      yStart + height
+    );
+  }
+
   // todo: construct from upper-left, height and width
   constructor Rectangle new (int __x1,int __x2,int __y1,int __y2) {
     let _x1 = __x1;
@@ -26,3 +35,4 @@ class Rectangle {
     return this;
   }
 }
+
