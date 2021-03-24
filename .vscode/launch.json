@@ -14,7 +14,8 @@
       "program": "${workspaceFolder}/tools/watcher.js",
       "outFiles": [
         "${workspaceFolder}/**/*.js"
-      ]
+      ],
+      "runtimeExecutable": "/Users/tuzmacbookpro2017/.nvm/versions/node/v14.15.1/bin/node"
     }
   ]
 }

@@ -1,7 +1,7 @@
 class Level {
   static int FLOOR_HEIGHT;
-  field int w;
-  field int h;
+  field int w;  // convenience
+  field int h;  // convenience
   field Array floors;
 
   function Rectangle createFloor (int xStart, int yStart, int width) {
@@ -9,13 +9,13 @@ class Level {
   }
 
   method void populateFloors () {
-    let floors = Array.new(1);
+    let floors = Array.new(2);
     let floors[0] = Level.createFloor(0, h - FLOOR_HEIGHT, w);
+    let floors[1] = Level.createFloor(0, h/2, w/2);
     return;
   }
 
   method void eraseScreen() {
-    // ERASE SCREEN
     do Screen.setColor(false);
     do Screen.drawRectangle(0, 0, w, h);
     return;
@@ -32,6 +32,8 @@ class Level {
     // todo: iterate floors
     var Rectangle floor;
     let floor = floors[0];
+    do floor.draw();
+    let floor = floors[1];
     do floor.draw();
     return;
   }
