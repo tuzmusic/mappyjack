@@ -1,0 +1,47 @@
+class ArrayTester {
+  field ObjArray entities;
+
+  method void printInfo(int index) {
+    var Entity e;
+    let e = entities.at(index);
+
+    do Output.printString("entities.at(");
+    do Output.printInt(index);
+    do Output.printString(").get_name() = ");
+    do U.printStrLn(e.get_name());
+
+    return;
+  }
+
+
+  method void testArrays () {
+    var Entity e;
+    var String s;
+
+    do entities.printLen(); // check initial empty length
+    do U.printIntLn(entities); // check address
+
+    
+    do entities.push(Entity.createSimpleEntity("First"));
+    do printInfo(0);
+
+    do entities.push(Entity.createSimpleEntity("Second"));
+    do printInfo(0);
+    do printInfo(1);
+
+    do entities.push(Entity.createSimpleEntity("Third
+    "));
+    do printInfo(0);
+    do printInfo(1);
+    do printInfo(2);
+
+    return;
+  }
+
+  
+  constructor ArrayTester new () {
+    let entities = ObjArray.new();
+    return this;
+  }
+  
+}
