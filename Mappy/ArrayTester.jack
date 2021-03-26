@@ -16,7 +16,6 @@ class ArrayTester {
 
   method void testArrays () {
     var Entity e;
-    var String s;
 
     do entities.printLen(); // check initial empty length
     do U.printIntLn(entities); // check address
@@ -44,6 +43,7 @@ class ArrayTester {
     // TEST POP
     do U.printStrLn("// TEST POP");
     let e = entities.pop();
+    do U.printStrLn(e.get_name());
     do printInfo(0);
     do printInfo(1);
     do entities.printLen();
@@ -54,19 +54,14 @@ class ArrayTester {
     do U.printStrLn("// TEST ERASE at(0)");
     do entities.eraseAt(0);
 
-    if (~entities.at(0)) {
-      do U.printStrLn("entities.at(0) IS null");
-    } else {
-      do U.printStrLn("entities.at(0) IS NOT null");
-    }
+    if (~entities.at(0)) { do U.printStrLn("entities.at(0) IS null"); } 
+    else { do U.printStrLn("entities.at(0) IS NOT null"); }
 
     do printInfo(1);
     do U.printStrLn("(^ check array contents after action ^)");
 
-
     return;
   }
-
   
   constructor ArrayTester new () {
     let entities = ObjArray.new();
