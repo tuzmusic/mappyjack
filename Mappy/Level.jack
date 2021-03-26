@@ -2,16 +2,16 @@ class Level {
   static int FLOOR_HEIGHT;
   field int w;  // convenience
   field int h;  // convenience
-  field Array floors;
+  field ObjArray floors;
 
   function Rectangle createFloor (int xStart, int yStart, int width) {
     return Rectangle.create(xStart, yStart, width, FLOOR_HEIGHT);
   }
 
   method void populateFloors () {
-    let floors = Array.new(2);
-    let floors[0] = Level.createFloor(0, h - FLOOR_HEIGHT, w);
-    let floors[1] = Level.createFloor(0, h/2, w/2);
+    let floors = ObjArray.new();
+    do floors.push(Level.createFloor(0, h - FLOOR_HEIGHT, w));
+    do floors.push(Level.createFloor(0, h/2, w/2));
     return;
   }
 
@@ -31,10 +31,14 @@ class Level {
   method void drawFloors() {
     // todo: iterate floors
     var Rectangle floor;
-    let floor = floors[0];
-    do floor.draw();
-    let floor = floors[1];
-    do floor.draw();
+    var int i;
+    let i = 0;
+
+    while (i < floors.length()) {
+      let floor = floors.at(i);
+      do floor.draw();
+      let i = i + 1;
+    }
     return;
   }
   
