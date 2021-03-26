@@ -7,7 +7,7 @@ class ArrayTester {
 
     do Output.printString("entities.at(");
     do Output.printInt(index);
-    do Output.printString(").get_name() = ");
+    do Output.printString(").name() = ");
     do U.printStrLn(e.get_name());
 
     return;
@@ -20,20 +20,49 @@ class ArrayTester {
 
     do entities.printLen(); // check initial empty length
     do U.printIntLn(entities); // check address
-
     
+    // TEST PUSH
+    do U.printStrLn("// TEST PUSH");
     do entities.push(Entity.createSimpleEntity("First"));
     do printInfo(0);
+    do U.printStrLn("(^ check array contents after action ^)");
 
     do entities.push(Entity.createSimpleEntity("Second"));
     do printInfo(0);
     do printInfo(1);
+    do entities.printLen();
+    do U.printStrLn("(^ check array contents after action ^)");
 
-    do entities.push(Entity.createSimpleEntity("Third
-    "));
+
+    do entities.push(Entity.createSimpleEntity("Third"));
     do printInfo(0);
     do printInfo(1);
     do printInfo(2);
+    do entities.printLen();
+    do U.printStrLn("(^ check array contents after action ^)");
+
+    // TEST POP
+    do U.printStrLn("// TEST POP");
+    let e = entities.pop();
+    do printInfo(0);
+    do printInfo(1);
+    do entities.printLen();
+    do U.printStrLn("(^ check array contents & length after action ^)");
+
+
+    // TEST ERASE
+    do U.printStrLn("// TEST ERASE at(0)");
+    do entities.eraseAt(0);
+
+    if (~entities.at(0)) {
+      do U.printStrLn("entities.at(0) IS null");
+    } else {
+      do U.printStrLn("entities.at(0) IS NOT null");
+    }
+
+    do printInfo(1);
+    do U.printStrLn("(^ check array contents after action ^)");
+
 
     return;
   }

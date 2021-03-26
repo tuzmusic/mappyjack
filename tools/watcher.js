@@ -4,7 +4,7 @@ const childProcess = require("child_process");
 const chokidar = require("chokidar");
 
 const filePath = path.resolve("./Mappy/");
-const compilerPath = "~/dev/HackManager/tools/JackCompiler.sh";
+const compilerPath = path.resolve("../tools/JackCompiler.sh");
 
 console.log("watching", filePath);
 

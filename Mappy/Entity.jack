@@ -33,6 +33,10 @@ class Entity {
     do drawRectEntity();
     return;
   }
+
+  function Entity createSimpleEntity (string _name) {
+    return Entity.new(_name, 0,0,0,0,0);
+  }
   
   constructor Entity new (string _name, int startX, int startY, int _baseVel, int _height, int _width) {
     let name = _name;

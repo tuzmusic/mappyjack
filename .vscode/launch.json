@@ -15,7 +15,8 @@
       "outFiles": [
         "${workspaceFolder}/**/*.js"
       ],
-      "runtimeExecutable": "/Users/tuzmacbookpro2017/.nvm/versions/node/v14.15.1/bin/node"
+      // "runtimeExecutable": "~/.nvm/versions/node/v14.15.1/bin/node"
+      "runtimeExecutable": "/usr/local/bin/node"
     }
   ]
 }

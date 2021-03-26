@@ -1,0 +1,107 @@
+class ObjArray {
+  field Array arr;
+  field int len;
+  field boolean debug;
+
+  method Array at (int index) { return arr[index]; }  
+  method int length() { return len; }
+  method void printLen() { 
+    do Output.printString("array length = ");
+    do U.printIntLn(length()); return; 
+  }
+
+  method Array pop() {
+    var Array last;
+    let last = arr[len - 1];
+    let len = len - 1;
+    do recreate();
+    return last;
+  }
+
+  method void eraseAt(int removalIndex) { 
+    let arr[removalIndex] = null; 
+    return;
+  }
+
+  method void removeAt(int removalIndex) {
+    // prepare the new array
+    var Array newArray;
+    var int i;
+    var boolean hasRemoved;
+    let hasRemoved = false;
+
+    if (len = 0) { return; }
+    
+    while (i < len) {
+      do U.printIntLn(i);
+      if (~(i = removalIndex)) {
+        // don't add the new item
+        let newArray[i] = arr[i];
+      } else {
+        if (~hasRemoved) {
+          // after removing the item, reset the indices
+          let i = i - 1;
+          let hasRemoved = true;
+        }
+      }
+
+      let i = i + 1;
+    }
+
+    let len = len - 1;
+
+    // reassign
+    let arr = newArray;
+    return;
+  }
+  
+  method void recreate () {
+    // prepare the new array
+    var Array newArray;
+    var int i;
+
+    // Array size must be positive (not zero) or we'll crash
+    if (len = 0) { return; }
+
+    let newArray = Array.new(len);
+    let i = 0;
+
+    // populate the new array.
+    /** on first push:
+    newArray is allocated for 1 element
+    len = 1, but arr[0] is empty...
+    newArray[0] = arr[0] = null which is fine
+    */
+    while (i < len) {
+      let newArray[i] = arr[i];
+      let i = i + 1;
+    }
+
+    // reassign
+    let arr = newArray;
+    return;
+  } 
+
+  method void push (Array obj) {
+    let len = len + 1; 
+
+    // recreate the array with the new length,
+    // which leaves an empty slot at the end
+    do recreate();
+
+    // add new item (in that empty slot)
+    if (debug) {
+      do Output.printString("pushing; new len: ");
+      do printLen();
+    }
+    let arr[len - 1] = obj;
+    return;
+  }
+
+  constructor ObjArray new () {
+    let len = 0;
+    let debug = false;
+    if (debug) { do U.printStrLn("constructing"); }
+    return this;
+  }
+}

@@ -6,6 +6,17 @@ class U {
   function int GRAVITY() { return 1; } // effects all moving entities
   function int HEIGHT() { return 256 - 1; } // actually the index of the last pixel
   function int WIDTH() { return 512 - 1; }  // actually the index of the last pixel
-  
+
+  function void printStrLn (String line) {
+    do Output.printString(line); 
+    do Output.println(); 
+    return;
+  }
+  function void printIntLn (int line) {
+    do Output.printInt(line); 
+    do Output.println(); 
+    return;
+  }
+
   constructor U new () { return this; }
 }
