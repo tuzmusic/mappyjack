@@ -1,7 +1,7 @@
 class Game {
   field boolean done;
   
-  field Array entities;
+  field ObjArray entities;
   field int entitiesLen;
   field Entity entity; // keep track of current entity in the loop
   field Level level;
@@ -9,7 +9,7 @@ class Game {
   constructor Game new () {
     let done = false;
     let entitiesLen = 1; // update manually as entities are added. blah.
-    let entities = Array.new(entitiesLen); 
+    let entities = ObjArray.new(); 
 
     let level = Level.new();
     return this;
@@ -24,13 +24,13 @@ class Game {
     //endregion boring initialization
 
     let mappy = createMappy();
-    let entities[0] = mappy;
+    do entities.push(mappy);
 
     // RUN LOOP
     while (~done) {
       do handleMappyInput(mappy);
       do level.drawLevel();
-      // do drawEntities();
+      do drawEntities();
       do Sys.wait(30);
     }
 
@@ -56,11 +56,12 @@ class Game {
       */
 
   method void drawEntities() {
-    var int counter;
-    let counter = 0;
-    while (counter < entitiesLen) {
-      let entity = entities[counter];
-      let counter = counter + 1;
+    var int i;
+    let i = 0;
+    
+    while (i < entities.length()) {
+      let entity = entities.at(i);
+      let i = i + 1;
 
       // MJS: entity.update(): this.traits.forEach(trait => trait.update(this));
       // do entity.update(this);
